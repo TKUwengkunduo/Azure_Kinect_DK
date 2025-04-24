@@ -74,7 +74,7 @@ Displays both color and depth streams, with depth visualization via OpenCV. Incl
 
 ## ROS2 Node Example
 
-ROS2 Package: `ros2/src/kinect_viewer`
+> 🔎 For a more complete and actively maintained ROS2 driver, refer to the community project: [Azure_Kinect_ROS2_Driver](https://github.com/ckennedy2050/Azure_Kinect_ROS2_Driver)
 
 ### Environment Setup
 Make sure you have sourced your ROS2 environment and set up the workspace correctly:
