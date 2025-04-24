@@ -12,7 +12,7 @@ from pyk4a import Config, PyK4A, ColorResolution, DepthMode, ImageFormat, FPS, c
 #                    ColorResolution.RES_3072P
 SET_COLOR_RESOLUTION = ColorResolution.RES_1080P
 
-# Depth Sensor Mode (will be disabled in display)
+# Depth Sensor Mode (OFF since we only display RGB)
 # Available options: DepthMode.OFF, DepthMode.NFOV_2X2BINNED, DepthMode.NFOV_UNBINNED,
 #                    DepthMode.WFOV_2X2BINNED, DepthMode.WFOV_UNBINNED, DepthMode.PASSIVE_IR
 SET_DEPTH_MODE = DepthMode.OFF
@@ -26,10 +26,11 @@ SET_CAMERA_FPS = FPS.FPS_30
 #                    ImageFormat.COLOR_NV12, ImageFormat.COLOR_YUY2
 SET_COLOR_FORMAT = ImageFormat.COLOR_BGRA32
 
-# Synchronized Images Only (no depth shown)
-SET_SYNCHRONIZED_IMAGES_ONLY = True
+# Synchronized Images Only (must be False if depth camera is OFF)
+SET_SYNCHRONIZED_IMAGES_ONLY = False
 
 # === Main Application Logic ===
+
 def main():
     # --- Device Selection ---
     num_connected_devices = connected_device_count()
@@ -39,7 +40,6 @@ def main():
 
     print(f"Detected {num_connected_devices} Azure Kinect DK device(s):")
     devices = {}
-
     for device_id in range(num_connected_devices):
         try:
             device = PyK4A(device_id=device_id)
@@ -68,6 +68,7 @@ def main():
         print(f"Automatically selected device ID {selected_device_id}.")
     # --- End Device Selection ---
 
+    # Configure device
     config = Config(
         color_resolution=SET_COLOR_RESOLUTION,
         depth_mode=SET_DEPTH_MODE,
@@ -90,10 +91,10 @@ def main():
         print(f"Failed to start device: {e}")
         sys.exit(1)
 
+    # Main loop: display only RGB image
     while True:
         capture = k4a.get_capture()
 
-        # Display only the color (RGB) image
         if capture.color is not None:
             try:
                 if SET_COLOR_FORMAT == ImageFormat.COLOR_BGRA32:
