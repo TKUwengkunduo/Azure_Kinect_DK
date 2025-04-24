@@ -76,6 +76,14 @@ Displays both color and depth streams, with depth visualization via OpenCV. Incl
 
 ROS2 Package: `ros2/src/kinect_viewer`
 
+### Environment Setup
+Make sure you have sourced your ROS2 environment and set up the workspace correctly:
+```bash
+cd ~/Azure_Kinect_DK/ros2
+colcon build
+source install/setup.bash
+```
+
 ### Run RGB Node
 ```bash
 ros2 run kinect_viewer rgb
@@ -85,8 +93,6 @@ ros2 run kinect_viewer rgb
 ```bash
 ros2 run kinect_viewer rgbd
 ```
-
-Ensure ROS2 is properly sourced and dependencies are installed. You can build this package using `colcon build`.
 
 ---
 
@@ -100,4 +106,11 @@ Ensure ROS2 is properly sourced and dependencies are installed. You can build th
 | Color Format                | COLOR_BGRA32, COLOR_MJPG, COLOR_NV12, COLOR_YUY2                                          | Image format of the color stream                                                             |
 | Synchronized Images Only    | True, False                                                                               | Enforce synchronized color and depth images                                                  |
 | Depth Colorization Range    | (min, max) in mm or (None, None)                                                          | Range used to colorize depth maps                                                            |
+
+---
+
+## References
+
+- Azure Kinect DK official page: [https://azure.microsoft.com/zh-tw/products/kinect-dk#layout-container-uid3944](https://azure.microsoft.com/zh-tw/products/kinect-dk#layout-container-uid3944)
+- Azure Kinect Sensor SDK GitHub: [https://github.com/microsoft/Azure-Kinect-Sensor-SDK/tree/develop](https://github.com/microsoft/Azure-Kinect-Sensor-SDK/tree/develop)
 
