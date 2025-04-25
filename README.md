@@ -8,13 +8,18 @@ Welcome to the **Azure Kinect DK** development kit! This repository includes too
 
 For detailed installation steps, refer to [Installation/README.md](Installation/README.md). Below is a summary:
 
-### 1. Install libsoundio1
+### 1. Clone this repository
+```bash
+git clone https://github.com/TKUwengkunduo/Azure_Kinect_DK.git
+```
+
+### 2. Install libsoundio1
 ```bash
 cd ~/Azure_Kinect_DK/Installation
 sudo dpkg -i libsoundio1_1.1.0-1_amd64.deb
 ```
 
-### 2. Add Microsoft Package Repository
+### 3. Add Microsoft Package Repository
 ```bash
 sudo apt update
 sudo apt install curl software-properties-common apt-transport-https
@@ -22,20 +27,20 @@ curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/ubuntu/18.04/prod bionic main"
 ```
 
-### 3. Install Azure Kinect SDK
+### 4. Install Azure Kinect SDK
 ```bash
 sudo apt update
 sudo apt install libk4a1.4 libk4a1.4-dev k4a-tools
 ```
 
-### 4. Configure Device Permissions
+### 5. Configure Device Permissions
 ```bash
-sudo cp Installation/99-k4a.rules /etc/udev/rules.d/
+sudo cp ~/Azure_Kinect_DK/Installation/99-k4a.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
 
-### 5. Test Viewer
+### 6. Test Viewer
 ```bash
 k4aviewer
 ```
